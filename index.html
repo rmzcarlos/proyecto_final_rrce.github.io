@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Programacion III</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="bootstrap (1).css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+    <style>
+        *{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+        #misdatos {
+			margin-top: 30px;
+            text-align: center;
+        }
+		#container{
+			margin-top: 30px;
+			margin-bottom: 30px;
+			justify-content: center;
+			display:flex;
+		}
+        #productos{
+			text-align: center;
+			display: flex;
+			align-items: center;
+			max-width: 1200px;
+
+        }
+		#producto{
+			font-size:15px;
+			padding-left: 20px;
+			padding-right: 20px;
+			align-items: center;
+			max-width: 300px;
+		}
+        #producto img{
+            height: 120px;
+            width: 150px;
+        }
+		h1{
+			font-size: 40px;
+		}
+		p{
+			font-size: 18px
+		}
+		button{
+			font-size: 18px;
+		}
+		table th{
+			text-align: center;
+		}
+		tr{
+			text-align: center;
+			justify-content: center;
+			align-items: center;
+			
+		}
+		h1{
+			font-size: 20px;
+			font-weight: bold;
+		}
+    </style>
+  </head>
+  <body>
+    <!-- Elementos de HTML-->
+	<div id="misdatos">
+		<h1> <b>Lista De Articulos</b> </h1>
+	</div>
+	<hr>
+<div id="container">
+	<div id="productos">
+        <div id="producto">
+            <img src="https://m.media-amazon.com/images/I/41gEZ76KVdL._AC_SX679_.jpg" alt="sudadera">
+			<p > <b>Sudadera</b> <br>Corridos Tumbados <br> <b>Precio:</b> 830</p>
+			<button onclick="agregarsudadera()" type="button" class="btn btn-outline-dark">AGREGAR</button>
+        </div>
+        <div id="producto">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_826753-MLM53534905011_012023-O.webp" alt="playera">
+			<p> <b>Playera</b> <br> Spotify <br> <b>Precio:</b> 210</p>	
+			<button onclick="agregarplayera()" type="button" class="btn btn-outline-dark">AGREGAR</button>
+
+		</div>
+        <div id="producto">
+            <img src="https://m.media-amazon.com/images/I/517E7Ja6erL._AC_SX679_.jpg" alt="pantalon">
+			<p> <b>Pantalon</b> <br> Jogger<br> <b>Precio:</b> 370</p>
+			<button onclick="agregarpantalon()" type="button" class="btn btn-outline-dark">AGREGAR</button>
+	</div>
+        <div id="producto">
+            <img src="https://m.media-amazon.com/images/I/61w-2YCvPwL._AC_SL1500_.jpg" alt="tenis">
+			<p> <b>Tenis</b> <br> Jordan 4 <br> <b>Precio:</b> 12500</p>
+			<button onclick="agregartenis()" type="button" class="btn btn-outline-dark">AGREGAR</button>
+	</div>
+	</div>
+</div>
+	<div class="container">
+		<table id="tabla" data-height="460" data-auto-refresh="true">
+			<thead>
+				<tr>
+					<th data-field="Nombre">Nombre</th>
+					<th data-field="Precio">Precio</th>
+					<th data-field="descuento">Descuento</th>
+					<th data-field="PrecioFinal">Precio Final</th>			
+					<th data-field="imagen">Imagen</th>		
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<div id="misdatos">
+		<h1>Ramirez Rodriguez Carlos Enrique</h1>    
+		<h1>25-11-2023</h1>
+		<h1>Programacion III</h1>
+		<h1>Proyecto Final: Mi venta de artículos</h1>
+		<h1>Copyright © Todos los derechos reservados</h1>
+	</div>	
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script> 
+		$(function () {
+			$('#tabla').bootstrapTable({
+				data: datos,
+				formatNoMatches: function () {
+					return 'No hay datos';
+				}
+			});
+		});
+		var datos = []
+		function muestraDatos(){
+			$('#tabla').bootstrapTable('load', datos);
+		}
+		function agregarsudadera(){
+			var descuento = prompt("Digita el descuento: ");
+			var sudadera ={
+				Nombre: "Sudadera Corridos Tumbados",
+				Precio: 830,
+				descuento: "$" + descuento + " pesos",
+				PrecioFinal: 830 - descuento + " pesos",
+				imagen: "<img width=\"100\" heigth=\"100\" src=\"https://m.media-amazon.com/images/I/41gEZ76KVdL._AC_SX679_.jpg\" >",
+			}
+			datos.push(sudadera);
+			muestraDatos();
+		}
+		function agregarplayera(){
+			var descuento = prompt("Digita el descuento: ");
+			var playera ={
+				Nombre: "Playera Spotify",
+				Precio: 210,
+				descuento: "$" + descuento + " pesos",
+				PrecioFinal: 210 - descuento + " pesos",
+				imagen: "<img width=\"100\" heigth=\"100\" src=\"https://http2.mlstatic.com/D_NQ_NP_826753-MLM53534905011_012023-O.webp\" >",
+			}
+			datos.push(playera);
+			muestraDatos();
+		}
+		function agregarpantalon(){
+
+			var descuento = prompt("Digita el descuento: ");
+			var pantalon ={
+				Nombre: "Pantalon Jogger",
+				Precio: 370,
+				descuento: "$" + descuento + " pesos",
+				PrecioFinal: 370 - descuento + " pesos",
+				imagen: "<img width=\"100\" heigth=\"100\" src=\"https://m.media-amazon.com/images/I/517E7Ja6erL._AC_SX679_.jpg\" >",
+			}
+			datos.push(pantalon);
+			muestraDatos();
+		}
+		function agregartenis(){
+			var descuento = prompt("Digita el descuento: ");
+			var tenis ={
+				Nombre: "Tenis Jordan 4",
+				Precio: 12500,
+				descuento: "$" + descuento + " pesos",
+				PrecioFinal: 12500 - descuento + " pesos",
+				imagen: "<img width=\"100\" heigth=\"100\" src=\"https://m.media-amazon.com/images/I/61w-2YCvPwL._AC_SL1500_.jpg\" >",
+			}
+			datos.push(tenis);
+			muestraDatos();
+		}
+  </script>
+</html>
+    
